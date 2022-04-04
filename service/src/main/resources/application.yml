@@ -1,0 +1,31 @@
+spring:
+  data:
+    cassandra:
+      keyspace-name: accounts
+      local-datacenter: datacenter1
+      contact-points: 127.0.0.1:9042
+      port: 9042
+      schema-action: none
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/munes
+    username: munes
+    password: munes
+  flyway:
+    url: jdbc:postgresql://localhost:5432/munes
+    user: ${spring.r2dbc.username}
+    password: ${spring.r2dbc.password}
+    locations: classpath:db/migration
+
+management:
+  health:
+    db:
+      enabled: true
+    defaults:
+      enabled: true
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health, mappings
