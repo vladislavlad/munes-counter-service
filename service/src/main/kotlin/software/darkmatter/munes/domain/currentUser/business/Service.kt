@@ -8,7 +8,7 @@ import software.darkmatter.platform.security.context.jwtAuthenticationFromSecuri
 @Service
 class Service(
     private val userInfoService: UserInfoService,
-) : GetCurrentUserInfoService {
+) : CurrentUserInfoService {
 
     override suspend fun perform(request: Unit) =
         jwtAuthenticationFromSecurityContext()
