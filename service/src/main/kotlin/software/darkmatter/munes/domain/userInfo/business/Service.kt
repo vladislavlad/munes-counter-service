@@ -1,14 +1,14 @@
 package software.darkmatter.munes.domain.userInfo.business
 
-import arrow.core.left
 import org.springframework.stereotype.Service
 import software.darkmatter.munes.domain.userInfo.data.UserInfo
 import software.darkmatter.munes.domain.userInfo.data.UserInfoPagingRepository
 import software.darkmatter.munes.domain.userInfo.data.UserInfoRepository
-import software.darkmatter.platform.error.BusinessError
-import software.darkmatter.platform.error.ErrorType
-import software.darkmatter.platform.service.AbstractCrudService
-import software.darkmatter.platform.syntax.UnitRight
+import software.darkmatter.platform.business.BusinessChecks
+import software.darkmatter.platform.business.businessChecks
+import software.darkmatter.platform.business.onRight
+import software.darkmatter.platform.error.uniqueConstraintConflict
+import software.darkmatter.platform.security.service.AuthCrudService
 import software.darkmatter.platform.syntax.leftIfNull
 import java.util.UUID
 
@@ -16,7 +16,7 @@ import java.util.UUID
 class Service(
     private val repository: UserInfoRepository,
     pagingRepository: UserInfoPagingRepository,
-) : AbstractCrudService<UserInfo, Long, UserInfoCreate, UserInfoUpdate>(repository, pagingRepository),
+) : AuthCrudService<UserInfo, Long, UserInfoCreate, UserInfoUpdate>(repository, pagingRepository),
     UserInfoService {
 
     override suspend fun getByUserUuid(userUuid: UUID) =
@@ -36,14 +36,15 @@ class Service(
             this
         }
 
-    override suspend fun checkUniqueOnCreate(businessCreate: UserInfoCreate) =
-        getByUserUuid(businessCreate.userUuid)
-            .fold(
-                { UnitRight },
-                { BusinessError.FlowConflict("UserInfo already created", ErrorType.UniqueConstraintConflict).left() }
-            )
+    override val checksOnCreate = businessChecks(
+        onRight(
+            check = ::getByUserUuid,
+            accessor = UserInfoCreate::userUuid,
+            error = { uniqueConstraintConflict("UserInfo already created") }
+        )
+    )
 
-    override suspend fun checkUniqueOnUpdate(businessUpdate: UserInfoUpdate) = UnitRight
+    override val checksOnUpdate: BusinessChecks<UserInfoUpdate> = businessChecks()
 
     override fun entityClass() = UserInfo::class
 }

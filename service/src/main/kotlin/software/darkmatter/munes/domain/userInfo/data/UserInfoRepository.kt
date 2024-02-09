@@ -1,9 +1,9 @@
 package software.darkmatter.munes.domain.userInfo.data
 
-import org.springframework.data.repository.kotlin.CoroutineSortingRepository
+import software.darkmatter.platform.data.CoroutineCrudSortingRepository
 import java.util.UUID
 
-interface UserInfoRepository : CoroutineSortingRepository<UserInfo, Long> {
+interface UserInfoRepository : CoroutineCrudSortingRepository<UserInfo, Long> {
 
     suspend fun findByUserUuid(userUuid: UUID): UserInfo?
 }

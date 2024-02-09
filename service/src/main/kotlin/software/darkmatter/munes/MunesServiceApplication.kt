@@ -8,7 +8,8 @@ import org.springframework.context.annotation.FullyQualifiedAnnotationBeanNameGe
 @SpringBootApplication(
     nameGenerator = FullyQualifiedAnnotationBeanNameGenerator::class,
     exclude = [ReactiveUserDetailsServiceAutoConfiguration::class],
-)class MunesServiceApplication
+)
+class MunesServiceApplication
 
 fun main(args: Array<String>) {
     runApplication<MunesServiceApplication>(*args)
