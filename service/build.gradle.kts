@@ -15,6 +15,7 @@ repositories {
 val springCloudVersion = "2023.0.0"
 val kotestVersion = "5.8.0"
 val platformVersion = "0.4.2"
+val schemaRegistryVersion = "0.0.1"
 
 dependencies {
     implementation(project(":api-client"))
@@ -23,6 +24,7 @@ dependencies {
     implementation("software.darkmatter:platform-core:$platformVersion")
     implementation("software.darkmatter:security-core:$platformVersion")
     implementation("software.darkmatter:security-jwt-client-starter:$platformVersion")
+    implementation("software.darkmatter:schema-registry:$schemaRegistryVersion")
 
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")

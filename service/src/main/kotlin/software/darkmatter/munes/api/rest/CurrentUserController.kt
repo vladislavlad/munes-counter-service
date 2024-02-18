@@ -1,12 +1,10 @@
-package software.darkmatter.munes.api
+package software.darkmatter.munes.api.rest
 
 import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import software.darkmatter.munes.domain.currentUser.business.CurrentUserInfoApi
 import software.darkmatter.munes.domain.userInfo.business.UserInfoCrudApi
-import software.darkmatter.munes.user.api.UserInfoApi
 import software.darkmatter.platform.api.handle
 
 @RestController
@@ -18,9 +16,4 @@ class CurrentUserController(
 
     @GetMapping
     suspend fun getInfo() = currentUserInfoApi.handle()
-
-    @PostMapping
-    suspend fun register() = userInfoCrudApi.create(
-        UserInfoApi.CreateRequest(null)
-    )
 }

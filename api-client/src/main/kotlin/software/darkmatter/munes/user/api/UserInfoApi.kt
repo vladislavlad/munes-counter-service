@@ -1,5 +1,6 @@
 package software.darkmatter.munes.user.api
 
+import software.darkmatter.munes.user.model.RateType
 import java.math.BigDecimal
 import java.util.UUID
 
@@ -12,7 +13,8 @@ object UserInfoApi {
     )
 
     data class CreateRequest(
-        var rate: BigDecimal?,
+        var rateType: RateType,
+        var rate: BigDecimal,
     )
 
     data class UpdateRequest(
@@ -21,7 +23,8 @@ object UserInfoApi {
     ) {
 
         data class Body(
-            var rate: BigDecimal?,
+            var rateType: RateType,
+            var rate: BigDecimal,
         )
     }
 }

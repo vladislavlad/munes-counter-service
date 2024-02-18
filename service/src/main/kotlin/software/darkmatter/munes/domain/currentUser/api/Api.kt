@@ -1,4 +1,4 @@
-package software.darkmatter.munes.domain.currentUser.assembler
+package software.darkmatter.munes.domain.currentUser.api
 
 import org.springframework.stereotype.Component
 import software.darkmatter.munes.domain.currentUser.business.CurrentUserInfoApi

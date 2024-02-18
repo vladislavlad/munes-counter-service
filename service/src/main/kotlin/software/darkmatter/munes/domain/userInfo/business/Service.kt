@@ -26,13 +26,22 @@ class Service(
     override suspend fun createEntity(businessCreate: UserInfoCreate) =
         UserInfo(
             userUuid = businessCreate.userUuid,
+            rateType = businessCreate.rateType,
             rate = businessCreate.rate,
             active = true,
         )
 
     override suspend fun updateEntity(businessUpdate: UserInfoUpdate) =
         with(businessUpdate.userInfo) {
-            rate = businessUpdate.rate
+            businessUpdate.rateType?.also {
+                rateType = it
+            }
+            businessUpdate.rate?.also {
+                rate = it
+            }
+            businessUpdate.active?.also {
+                active = it
+            }
             this
         }
 

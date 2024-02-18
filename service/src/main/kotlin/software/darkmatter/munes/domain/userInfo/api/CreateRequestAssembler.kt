@@ -1,4 +1,4 @@
-package software.darkmatter.munes.domain.userInfo.assembler
+package software.darkmatter.munes.domain.userInfo.api
 
 import org.springframework.stereotype.Component
 import software.darkmatter.munes.domain.userInfo.business.UserInfoCreate
@@ -15,7 +15,8 @@ class CreateRequestAssembler : RequestAssembler<UserInfoApi.CreateRequest, UserI
                 with(request) {
                     UserInfoCreate(
                         userUuid = it.jwt.subject,
-                        rate = rate
+                        rateType = rateType,
+                        rate = rate,
                     )
                 }
             }

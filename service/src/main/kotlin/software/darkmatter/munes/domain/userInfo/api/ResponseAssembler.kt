@@ -1,4 +1,4 @@
-package software.darkmatter.munes.domain.userInfo.assembler
+package software.darkmatter.munes.domain.userInfo.api
 
 import arrow.core.right
 import org.springframework.stereotype.Component
