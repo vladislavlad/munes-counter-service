@@ -2,6 +2,7 @@ package software.darkmatter.munes.domain.userInfo.business
 
 import software.darkmatter.munes.domain.userInfo.data.UserInfo
 import software.darkmatter.munes.user.api.UserInfoApi
+import software.darkmatter.munes.user.model.Currency
 import software.darkmatter.munes.user.model.RateType
 import software.darkmatter.platform.api.http.ServiceCrudApi
 import java.math.BigDecimal
@@ -16,6 +17,7 @@ data class UserInfoCreate(
     val userUuid: UUID,
     val rateType: RateType?,
     val rate: BigDecimal?,
+    val currency: Currency = Currency.USD,
 )
 
 data class UserInfoUpdate(

@@ -1,5 +1,6 @@
 package software.darkmatter.munes.user.api
 
+import software.darkmatter.munes.user.model.Currency
 import software.darkmatter.munes.user.model.RateType
 import java.math.BigDecimal
 import java.util.UUID
@@ -15,6 +16,7 @@ object UserInfoApi {
     data class CreateRequest(
         var rateType: RateType,
         var rate: BigDecimal,
+        var currency: Currency,
     )
 
     data class UpdateRequest(

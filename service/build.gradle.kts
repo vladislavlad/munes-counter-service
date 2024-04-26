@@ -12,9 +12,9 @@ repositories {
     mavenCentral()
 }
 
-val springCloudVersion = "2023.0.0"
-val kotestVersion = "5.8.0"
-val platformVersion = "0.4.2"
+val springCloudVersion = "2023.0.1"
+val kotestVersion = "5.8.1"
+val platformVersion = "0.5.3"
 val schemaRegistryVersion = "0.0.1"
 
 dependencies {
@@ -29,6 +29,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-data-r2dbc")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.cloud:spring-cloud-stream")
+    implementation("org.springframework.cloud:spring-cloud-stream-binder-kafka")
+    implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.5.0")
 
     implementation("jakarta.validation:jakarta.validation-api:3.0.2")
     implementation("org.hibernate:hibernate-validator:8.0.1.Final")
@@ -37,8 +40,8 @@ dependencies {
     implementation("org.postgresql:r2dbc-postgresql")
     runtimeOnly("org.postgresql:postgresql")
 
-    implementation("io.arrow-kt:arrow-core:1.1.5")
-    implementation("io.github.microutils:kotlin-logging:3.0.5")
+    implementation("io.arrow-kt:arrow-core:1.2.4")
+    implementation("io.github.oshai:kotlin-logging:6.0.9")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")

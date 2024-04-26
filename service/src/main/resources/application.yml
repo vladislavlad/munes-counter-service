@@ -1,11 +1,12 @@
 spring:
-  data:
-    cassandra:
-      keyspace-name: accounts
-      local-datacenter: datacenter1
-      contact-points: 127.0.0.1:9042
-      port: 9042
-      schema-action: none
+  application:
+    name: munes-counter
+  cassandra:
+    keyspace-name: accounts
+    local-datacenter: datacenter1
+    contact-points: 127.0.0.1:9042
+    port: 9042
+    schema-action: none
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/munes
     username: munes
@@ -15,6 +16,37 @@ spring:
     user: ${spring.r2dbc.username}
     password: ${spring.r2dbc.password}
     locations: classpath:db/migration
+  kafka:
+    bootstrap-servers: localhost:9092
+    # check and note
+    consumer:
+      auto-offset-reset: earliest
+  cloud:
+    function:
+      definition: accountsStream;tasksStream;tasks
+    stream:
+      default-binder: kafka
+      kafka:
+        # check and note
+        default:
+          consumer:
+            startOffset: earliest
+            useNativeDecoding: true
+            enable-dlq: true
+            dlq-name: dlq.tasks-service
+        binder:
+          brokers: localhost:9092
+          healthTimeout: 10
+          requiredAcks: 1
+          minPartitionCount: 1
+          replicationFactor: 1
+          enableObservation: true
+      bindings:
+        # consumers
+        accountsStream-in-0:
+          group: tasks-service
+          destination: accounts-stream
+          binder: kafka
 
 management:
   health:

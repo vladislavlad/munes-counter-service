@@ -28,6 +28,7 @@ class Service(
             userUuid = businessCreate.userUuid,
             rateType = businessCreate.rateType,
             rate = businessCreate.rate,
+            currency = businessCreate.currency,
             active = true,
         )
 

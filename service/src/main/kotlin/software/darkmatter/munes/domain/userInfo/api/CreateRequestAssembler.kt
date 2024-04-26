@@ -17,6 +17,7 @@ class CreateRequestAssembler : RequestAssembler<UserInfoApi.CreateRequest, UserI
                         userUuid = it.jwt.subject,
                         rateType = rateType,
                         rate = rate,
+                        currency = currency,
                     )
                 }
             }
