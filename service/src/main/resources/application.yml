@@ -23,7 +23,7 @@ spring:
       auto-offset-reset: earliest
   cloud:
     function:
-      definition: accountsStream;tasksStream;tasks
+      definition: accountsStream
     stream:
       default-binder: kafka
       kafka:
@@ -33,7 +33,7 @@ spring:
             startOffset: earliest
             useNativeDecoding: true
             enable-dlq: true
-            dlq-name: dlq.tasks-service
+            dlq-name: dlq.munes-service
         binder:
           brokers: localhost:9092
           healthTimeout: 10

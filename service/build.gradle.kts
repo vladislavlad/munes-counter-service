@@ -15,7 +15,7 @@ repositories {
 val springCloudVersion = "2023.0.1"
 val kotestVersion = "5.8.1"
 val platformVersion = "0.5.3"
-val schemaRegistryVersion = "0.0.1"
+val schemaRegistryVersion = "0.0.2"
 
 dependencies {
     implementation(project(":api-client"))
