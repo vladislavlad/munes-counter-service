@@ -15,7 +15,6 @@ class ResponseAssembler : ResponseAssembler<CurrentUserInfo, CurrentUserApi.Resp
         CurrentUserApi.Response(
             userUuid = business.user.uuid,
             username = business.user.username,
-            firstName = business.user.firstName,
             rateType = business.userRate?.rateType,
             rate = business.userRate?.rate,
             currency = business.userRate?.currency,

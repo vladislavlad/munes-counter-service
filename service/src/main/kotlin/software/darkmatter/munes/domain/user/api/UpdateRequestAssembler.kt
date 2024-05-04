@@ -16,9 +16,6 @@ class UpdateRequestAssembler(
             .map {
                 UserUpdate(
                     user = it,
-                    firstName = request.body.firstName,
-                    lastName = request.body.lastName,
-                    middleName = request.body.middleName,
                 )
             }
 }

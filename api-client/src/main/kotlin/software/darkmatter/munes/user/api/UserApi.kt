@@ -11,9 +11,6 @@ object UserApi {
     data class Response(
         val userUuid: UUID,
         var username: String,
-        val firstName: String?,
-        val lastName: String?,
-        val middleName: String?,
         var active: Boolean,
     )
 

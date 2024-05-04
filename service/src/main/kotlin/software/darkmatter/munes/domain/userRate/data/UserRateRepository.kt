@@ -4,5 +4,5 @@ import software.darkmatter.platform.data.CoroutineUndeletableCrudSortingReposito
 
 interface UserRateRepository : CoroutineUndeletableCrudSortingRepository<UserRate, Long> {
 
-    suspend fun findByUserId(userId: Long): UserRate?
+    suspend fun findByUserIdAndDeletedAtIsNull(userId: Long): UserRate?
 }

@@ -17,9 +17,6 @@ class UserUpdateHandler(
                 userService.update(
                     UserUpdate(
                         user = it,
-                        firstName = data.firstName,
-                        lastName = data.lastName,
-                        middleName = data.middleName
                     )
                 )
             }.map { }

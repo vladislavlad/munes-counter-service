@@ -15,9 +15,6 @@ class UserCreateHandler(
             UserCreate(
                 uuid = data.uuid,
                 username = data.username,
-                firstName = data.firstName,
-                lastName = data.lastName,
-                middleName = data.middleName
             )
         ).map { }
 }

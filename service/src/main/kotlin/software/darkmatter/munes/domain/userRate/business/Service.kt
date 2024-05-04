@@ -6,21 +6,21 @@ import software.darkmatter.munes.domain.user.data.User
 import software.darkmatter.munes.domain.userRate.data.UserRate
 import software.darkmatter.munes.domain.userRate.data.UserRateRepository
 import software.darkmatter.platform.business.BusinessCheck
-import software.darkmatter.platform.data.PagingRepository
+import software.darkmatter.platform.data.PagingUndeletableRepository
 import software.darkmatter.platform.error.BusinessError
-import software.darkmatter.platform.security.service.AuthCrudService
+import software.darkmatter.platform.security.service.AuthUndeletableCrudService
 import software.darkmatter.platform.syntax.leftIfNull
 import java.time.OffsetDateTime
 
 @Service
 class Service(
     private val repository: UserRateRepository,
-    pagingRepository: PagingRepository<UserRate, Long>,
-) : AuthCrudService<UserRate, Long, UserRateCreate, UserRateUpdate>(repository, pagingRepository),
+    pagingRepository: PagingUndeletableRepository<UserRate, Long>,
+) : AuthUndeletableCrudService<UserRate, Long, UserRateCreate, UserRateUpdate>(repository, pagingRepository),
     UserRateService {
 
     override suspend fun getByUser(user: User): Either<BusinessError, UserRate> =
-        repository.findByUserId(user.id!!)
+        repository.findByUserIdAndDeletedAtIsNull(user.id!!)
             .leftIfNull { notFound }
 
     override suspend fun createEntity(businessCreate: UserRateCreate): UserRate {

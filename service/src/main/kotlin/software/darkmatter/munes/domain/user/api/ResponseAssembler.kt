@@ -15,9 +15,6 @@ class ResponseAssembler : ResponseAssembler<User, UserApi.Response> {
         UserApi.Response(
             userUuid = business.uuid,
             username = business.username,
-            firstName = business.firstName,
-            lastName = business.lastName,
-            middleName = business.middleName,
             active = business.active
         ).right()
 }

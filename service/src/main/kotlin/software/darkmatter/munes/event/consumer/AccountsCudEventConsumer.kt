@@ -12,7 +12,6 @@ import reactor.core.publisher.Mono
 import software.darkmatter.event.cud.CudEventSchemaRegistry
 import software.darkmatter.event.cud.CudEventType
 import software.darkmatter.event.cud.user.v1.UserData
-import software.darkmatter.event.cud.userApplication.v1.UserApplicationData
 import software.darkmatter.munes.domain.user.handler.UserCreateHandler
 import software.darkmatter.munes.domain.user.handler.UserDeleteHandler
 import software.darkmatter.munes.domain.user.handler.UserUpdateHandler

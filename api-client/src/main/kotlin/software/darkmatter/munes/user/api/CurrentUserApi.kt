@@ -10,7 +10,6 @@ object CurrentUserApi {
     data class Response(
         val userUuid: UUID,
         val username: String,
-        val firstName: String?,
         val rateType: RateType?,
         val rate: BigDecimal?,
         val currency: Currency?,
